@@ -25,8 +25,9 @@ int createProduct(Product *p) {
 	printf("상품의 판매가격을 입력해주세요: ");
 	scanf("%d", &p->price);
 	printf("상품의 별점을 입력해주세요: ");
-	scanf("%d", &p->rate[0]);
-	p->countstar = 1;
+	scanf("%f", &p->rate[0]);
+	printf("상품의 별점 갯수를 입력해주세요: ");
+	scanf("%d", &p->countstar);
 	
 	return 1;
 }
@@ -48,7 +49,7 @@ int updateProduct(Product *p) {
 	printf("상품의 판매가격을 입력해주세요: ");
 	scanf("%d", &p->price);
 	printf("상품의 별점을 입력해주세요: ");
-	scanf("%d", &p->rate[0]);
+	scanf("%f", &p->rate[0]);
 	printf("상품의 별점 개수를 입력해주세요: ");
 	scanf("%d", &p->countstar);
 	printf("수정이 완료되었습니다! \n");
@@ -65,4 +66,20 @@ int deleteProduct(Product *p) {
 	return 1;
 }
 
-
+int loadData(Product *p) {
+	int i = 0;
+	FILE *fp;
+	fp = fopen("product.txt","rt");
+	for(; i < 100; i++) {
+		fscanf(fp, "%s", p[i].name);
+		if(feof(fp)) break;
+		fscanf(fp, "%f", &p[i].weight);
+		fscanf(fp, "%d", &p[i].price);
+		fscanf(fp, "%f", &p[i].rate[0]);
+		fscanf(fp, "%d", &p[i].countstar);
+	}
+	fclose(fp);
+	if(i == 0) printf(" => 파일이 없습니다\n");
+	else printf(" => 로딩에 성공했습니다.\n");
+	return i;
+}

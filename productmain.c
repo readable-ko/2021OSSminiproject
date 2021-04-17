@@ -9,6 +9,10 @@ int main() {
 	plist[0].price = -1;
 	int count = 0,index =0, menu;
 	int delok;
+
+	count = loadData(plist);
+	index = count;
+
 	while(1) {
 		menu = selectMenu();
 		if(menu == 0) break;
