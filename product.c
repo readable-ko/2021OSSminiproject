@@ -13,7 +13,7 @@ int selectMenu() {
 	printf("3. 판매 상품 수정\n");
 	printf("4. 판매 상품 삭제\n");
 	printf("5. 판매 상품 저장\n");
-	printf("6. 이름으로 상품 검색\n");
+	printf("6. 상품 검색\n");
 	printf("0. 종료\n");
 	printf("원하는 메뉴를 선택해 주세요: ");
 	scanf("%d",&menu);
@@ -44,8 +44,8 @@ void readProduct(Product p) {
 		printf("현재 입력된 상품이 없습니다.\n");
 	else {
 		float aver = p.rate;
-		printf("  /%s  / %.2fkg / %d원  / %.2f(%d개)\n",p.name, p.weight, p.price, aver, p.countstar);
-	}
+		printf("  /  %s  /  %.2fkg /  %d원  /  %.2f(%d개)\n",p.name, p.weight, p.price, aver, p.countstar);
+	}                                      
 }
 
 int updateProduct(Product *p) {	
@@ -118,7 +118,7 @@ void searchName(Product *p, int count) {
 	for(int i = 0; i < count; i++) {
 		if(p[i].price == -1) continue;
 		if(strstr(p[i].name, search)) {
-			printf("  %2d  %s  %.2f  %d  %f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
+			printf("  %2d  %s   %.2f   %d   %.2f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
 				       	p[i].rate, p[i].countstar);
 			scnt++;
 		}
@@ -132,14 +132,14 @@ void searchPrice(Product *p, int count) {
 	int scnt = 0, key;
 
 	while(1) {
-		printf("검색할 최소 금액을 입력해주세요 ");
+		printf("\n검색할 최소 금액을 입력해주세요 : ");
 		scanf("%d", &lower_bound);
 	
-		printf("검색할 최대 금액을 입력해주세요 ");
+		printf("검색할 최대 금액을 입력해주세요 : ");
 		scanf("%d", &upper_bound);
 
-		printf("%d ~ %d 사이 금액 대 물건을 검색하겠습니까?(맞다면 1번 틀리다면 0번) : ");
-		scnaf("%d", &key);
+		printf("%d ~ %d 사이 금액 대 물건을 검색하겠습니까?(맞다면 1번 틀리다면 0번) : ", lower_bound, upper_bound);
+		scanf("%d", &key);
 		if(key == 1) break;
 	}
 	
@@ -147,8 +147,8 @@ void searchPrice(Product *p, int count) {
 	printf("===========================================\n");
 	for(int i = 0; i < count; i++) {
 		if(p[i].price == -1) continue;
-		if(strstr(p[i].name, search)) {
-			printf("  %2d  %s  %.2f  %d  %f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
+		if(p[i].price >= lower_bound && p[i].price <= upper_bound) {
+			printf("  %2d  %s    %.2f   %d   %.2f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
 				       	p[i].rate, p[i].countstar);
 			scnt++;
 		}

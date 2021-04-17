@@ -41,7 +41,17 @@ int main() {
 			saveData(plist,index);
 		}
 		else if(menu == 6) {
-			searchName(plist,index);
+			printf("1. 상품명으로 검색\n");
+			printf("2. 상품 가격으로 검색\n");
+			printf("3. 상품 별점으로 검색\n");
+			printf("4. 상품평 갯수로 검색\n");
+			scanf("%d", &delok);
+			switch(delok) {
+				case 1: searchName(plist,index); break;
+				case 2: searchPrice(plist,index); break;
+				default: break;
+			}
+
 		}
 	}
 	printf("프로그램이 종료되었습니다.\n");
