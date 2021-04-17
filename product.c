@@ -1,6 +1,7 @@
 //This is product function code
 //
 #include <stdio.h>
+#include <string.h>
 #include "manager.h"
 
 
@@ -12,6 +13,7 @@ int selectMenu() {
 	printf("3. 판매 상품 수정\n");
 	printf("4. 판매 상품 삭제\n");
 	printf("5. 판매 상품 저장\n");
+	printf("6. 이름으로 상품 검색\n");
 	printf("0. 종료\n");
 	printf("원하는 메뉴를 선택해 주세요: ");
 	scanf("%d",&menu);
@@ -95,5 +97,25 @@ void saveData(Product *p, int count) {
 	}
 	fclose(fp);
 	printf(" => 저장되었습니다.\n");
+}
+
+void searchName(Product *p, int count) {
+	char search[20];
+	int scnt = 0;
+
+	printf("검색할 상품명을 입력해주세요: ");
+	scanf("%s",search);
+
+	printf("  번호  /  상품명  /  중량  /  판매가격  /  별점(갯수)\n");
+	printf("===========================================\n");
+	for(int i = 0; i < count; i++) {
+		if(p[i].price == -1) continue;
+		if(strstr(p[i].name, search)) {
+			printf("  %2d  %s  %.2f  %d  %f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
+				       	p[i].rate, p[i].countstar);
+			scnt++;
+		}
+	}
+	if(scnt == 0) printf("검색된 데이터가 없습니다.\n\n");
 }
 
