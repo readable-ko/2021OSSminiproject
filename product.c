@@ -126,3 +126,32 @@ void searchName(Product *p, int count) {
 	if(scnt == 0) printf("검색된 데이터가 없습니다.\n\n");
 }
 
+void searchPrice(Product *p, int count) {
+	int lower_bound;
+	int upper_bound;
+	int scnt = 0, key;
+
+	while(1) {
+		printf("검색할 최소 금액을 입력해주세요 ");
+		scanf("%d", &lower_bound);
+	
+		printf("검색할 최대 금액을 입력해주세요 ");
+		scanf("%d", &upper_bound);
+
+		printf("%d ~ %d 사이 금액 대 물건을 검색하겠습니까?(맞다면 1번 틀리다면 0번) : ");
+		scnaf("%d", &key);
+		if(key == 1) break;
+	}
+	
+	printf("  번호  /  상품명  /  중량  /  판매가격  /  별점(갯수)\n");
+	printf("===========================================\n");
+	for(int i = 0; i < count; i++) {
+		if(p[i].price == -1) continue;
+		if(strstr(p[i].name, search)) {
+			printf("  %2d  %s  %.2f  %d  %f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
+				       	p[i].rate, p[i].countstar);
+			scnt++;
+		}
+	}
+	if(scnt == 0) printf("검색된 데이터가 없습니다.\n\n");
+}
