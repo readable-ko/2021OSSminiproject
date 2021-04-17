@@ -109,7 +109,8 @@ void saveData(Product *p, int count) {
 void searchName(Product *p, int count) {
 	char search[20];
 	int scnt = 0;
-
+	
+	printf("\n");
 	printf("검색할 상품명을 입력해주세요: ");
 	scanf("%s",search);
 
@@ -118,7 +119,7 @@ void searchName(Product *p, int count) {
 	for(int i = 0; i < count; i++) {
 		if(p[i].price == -1) continue;
 		if(strstr(p[i].name, search)) {
-			printf("  %2d  %s   %.2f   %d   %.2f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
+			printf("  %2d    %s   %.2f    %d    %.2f(%d)\n",i+1, p[i].name, p[i].weight, p[i].price,
 				       	p[i].rate, p[i].countstar);
 			scnt++;
 		}
@@ -132,7 +133,8 @@ void searchPrice(Product *p, int count) {
 	int scnt = 0, key;
 
 	while(1) {
-		printf("\n검색할 최소 금액을 입력해주세요 : ");
+		printf("\n");
+		printf("검색할 최소 금액을 입력해주세요 : ");
 		scanf("%d", &lower_bound);
 	
 		printf("검색할 최대 금액을 입력해주세요 : ");
@@ -148,7 +150,44 @@ void searchPrice(Product *p, int count) {
 	for(int i = 0; i < count; i++) {
 		if(p[i].price == -1) continue;
 		if(p[i].price >= lower_bound && p[i].price <= upper_bound) {
-			printf("  %2d  %s    %.2f   %d   %.2f(%d)",i+1, p[i].name, p[i].weight, p[i].price,
+			printf("  %2d    %s    %.2f   %d    %.2f(%d)\n",i+1, p[i].name, p[i].weight, p[i].price,
+				       	p[i].rate, p[i].countstar);
+			scnt++;
+		}
+	}
+	if(scnt == 0) printf("검색된 데이터가 없습니다.\n\n");
+}
+
+void searchRate(Product *p, int count) {
+	int lower_bound;
+	int upper_bound;
+	int scnt = 0, key;
+
+	while(1) {
+                while(1) {
+			printf("\n");
+			printf("검색할 최저 별점을 입력해주세요(1~5점) : ");
+			scanf("%d", &lower_bound);
+                	if(lower_bound >= 1 && lower_bound <= 5) break;
+                }
+
+                while(1) {
+			printf("검색할 최대 별점을 입력해주세요(1~5점) : ");
+			scanf("%d", &upper_bound);
+                	if(upper_bound >= 1 && upper_bound <= 5) break;
+                }
+
+		printf("별점 %d ~ %d 사이  상품을 검색하겠습니까?(맞다면 1번 틀리다면 0번) : ", lower_bound, upper_bound);
+		scanf("%d", &key);
+		if(key == 1) break;
+	}
+	
+	printf("  번호  /  상품명  /  중량  /  판매가격  /  별점(갯수)\n");
+	printf("===========================================\n");
+	for(int i = 0; i < count; i++) {
+		if(p[i].price == -1) continue;
+		if(p[i].rate >= lower_bound && p[i].rate <= upper_bound) {
+			printf("  %2d    %s    %.2f    %d    %.2f(%d)\n",i+1, p[i].name, p[i].weight, p[i].price,
 				       	p[i].rate, p[i].countstar);
 			scnt++;
 		}

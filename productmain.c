@@ -41,7 +41,7 @@ int main() {
 			saveData(plist,index);
 		}
 		else if(menu == 6) {
-			printf("1. 상품명으로 검색\n");
+			printf("\n1. 상품명으로 검색\n");
 			printf("2. 상품 가격으로 검색\n");
 			printf("3. 상품 별점으로 검색\n");
 			printf("4. 상품평 갯수로 검색\n");
@@ -49,6 +49,7 @@ int main() {
 			switch(delok) {
 				case 1: searchName(plist,index); break;
 				case 2: searchPrice(plist,index); break;
+				case 3: searchRate(plist,index); break;
 				default: break;
 			}
 
