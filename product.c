@@ -11,6 +11,7 @@ int selectMenu() {
 	printf("2. 판매 상품 조회\n");
 	printf("3. 판매 상품 수정\n");
 	printf("4. 판매 상품 삭제\n");
+	printf("5. 판매 상품 저장\n");
 	printf("0. 종료\n");
 	printf("원하는 메뉴를 선택해 주세요: ");
 	scanf("%d",&menu);
@@ -25,7 +26,7 @@ int createProduct(Product *p) {
 	printf("상품의 판매가격을 입력해주세요: ");
 	scanf("%d", &p->price);
 	printf("상품의 별점을 입력해주세요: ");
-	scanf("%f", &p->rate[0]);
+	scanf("%f", &p->rate);
 	printf("상품의 별점 갯수를 입력해주세요: ");
 	scanf("%d", &p->countstar);
 	
@@ -36,7 +37,7 @@ void readProduct(Product p) {
 	if(p.price == -1)
 		printf("현재 입력된 상품이 없습니다.\n");
 	else {
-		float aver = p.rate[0];
+		float aver = p.rate;
 		printf("  /%s  / %.2fkg / %d원  / %.2f(%d개)\n",p.name, p.weight, p.price, aver, p.countstar);
 	}
 }
@@ -49,7 +50,7 @@ int updateProduct(Product *p) {
 	printf("상품의 판매가격을 입력해주세요: ");
 	scanf("%d", &p->price);
 	printf("상품의 별점을 입력해주세요: ");
-	scanf("%f", &p->rate[0]);
+	scanf("%f", &p->rate);
 	printf("상품의 별점 개수를 입력해주세요: ");
 	scanf("%d", &p->countstar);
 	printf("수정이 완료되었습니다! \n");
@@ -60,7 +61,7 @@ int updateProduct(Product *p) {
 int deleteProduct(Product *p) {
 	p->weight = -1;
 	p->price = -1;
-	p->rate[0] = -1;
+	p->rate = -1;
 	p->countstar = -1;
 	printf("데이터가 모두 삭제되었습니다.\n");
 	return 1;
@@ -75,7 +76,7 @@ int loadData(Product *p) {
 		if(feof(fp)) break;
 		fscanf(fp, "%f", &p[i].weight);
 		fscanf(fp, "%d", &p[i].price);
-		fscanf(fp, "%f", &p[i].rate[0]);
+		fscanf(fp, "%f", &p[i].rate);
 		fscanf(fp, "%d", &p[i].countstar);
 	}
 	fclose(fp);
@@ -83,3 +84,16 @@ int loadData(Product *p) {
 	else printf(" => 로딩에 성공했습니다.\n");
 	return i;
 }
+
+void saveData(Product *p, int count) {
+	FILE *fp;
+	fp = fopen("product.txt","wt");
+
+	for(int i = 0; i < count; i++) {
+		if(p[i].price == -1) continue;
+		fprintf(fp, "%s %f %d %f %d \n", p[i].name, p[i].weight, p[i].price, p[i].rate, p[i].countstar);
+	}
+	fclose(fp);
+	printf(" => 저장되었습니다.\n");
+}
+

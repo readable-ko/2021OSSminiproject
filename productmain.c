@@ -37,6 +37,9 @@ int main() {
 				}
 			}
 		}
+		else if(menu == 5) {
+			saveData(plist,index);
+		}
 	}
 	printf("프로그램이 종료되었습니다.\n");
 	return 0;

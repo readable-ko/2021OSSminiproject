@@ -5,7 +5,7 @@ typedef struct {
 	char name[20];
 	float weight;
 	int price;
-	float rate[20];
+	float rate;
 	int countstar;
 } Product;
 
