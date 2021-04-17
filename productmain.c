@@ -45,11 +45,13 @@ int main() {
 			printf("2. 상품 가격으로 검색\n");
 			printf("3. 상품 별점으로 검색\n");
 			printf("4. 상품평 갯수로 검색\n");
+			printf("숫자를 입력해주세요 : ");
 			scanf("%d", &delok);
 			switch(delok) {
 				case 1: searchName(plist,index); break;
 				case 2: searchPrice(plist,index); break;
 				case 3: searchRate(plist,index); break;
+				case 4: searchStar(plist,index); break;
 				default: break;
 			}
 
