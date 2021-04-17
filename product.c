@@ -27,8 +27,12 @@ int createProduct(Product *p) {
 	scanf("%f", &p->weight);
 	printf("상품의 판매가격을 입력해주세요: ");
 	scanf("%d", &p->price);
-	printf("상품의 별점을 입력해주세요: ");
-	scanf("%f", &p->rate);
+	while(1) {
+		printf("상품의 별점을 입력해주세요(1~5점): ");
+		scanf("%f", &p->rate);
+		if(p->rate >= 1.0 && p->rate <= 5.0) break;
+	}
+
 	printf("상품의 별점 갯수를 입력해주세요: ");
 	scanf("%d", &p->countstar);
 	
@@ -51,8 +55,11 @@ int updateProduct(Product *p) {
 	scanf("%f", &p->weight);
 	printf("상품의 판매가격을 입력해주세요: ");
 	scanf("%d", &p->price);
-	printf("상품의 별점을 입력해주세요: ");
-	scanf("%f", &p->rate);
+	while(1) {
+		printf("상품의 별점을 입력해주세요(1~5점): ");
+		scanf("%f", &p->rate);
+		if(p->rate >= 1 && p->rate <= 5) break;
+	}
 	printf("상품의 별점 개수를 입력해주세요: ");
 	scanf("%d", &p->countstar);
 	printf("수정이 완료되었습니다! \n");
