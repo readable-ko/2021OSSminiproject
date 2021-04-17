@@ -157,24 +157,24 @@ void searchPrice(Product *p, int count) {
 }
 
 void searchRate(Product *p, int count) {
-	int lower_bound;
-	int upper_bound;
+	float lower_bound;
+	float upper_bound;
 	int scnt = 0, key;
 
 	while(1) {
                 while(1) {
 			printf("\n검색할 최저 별점을 입력해주세요(1~5점) : ");
-			scanf("%d", &lower_bound);
+			scanf("%f", &lower_bound);
                 	if(lower_bound >= 1 && lower_bound <= 5) break;
                 }
 
                 while(1) {
 			printf("검색할 최대 별점을 입력해주세요(1~5점) : ");
-			scanf("%d", &upper_bound);
+			scanf("%f", &upper_bound);
                 	if(upper_bound >= 1 && upper_bound <= 5) break;
                 }
 
-		printf("별점 %d ~ %d 사이  상품을 검색하겠습니까?(맞다면 1번 틀리다면 0번) : ", lower_bound, upper_bound);
+		printf("별점 %.2f ~ %.2f 사이  상품을 검색하겠습니까?(맞다면 1번 틀리다면 0번) : ", lower_bound, upper_bound);
 		scanf("%d", &key);
 		if(key == 1) break;
 	}
