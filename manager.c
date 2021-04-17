@@ -1,3 +1,4 @@
+//THis is the manager fuction file of product
 #include <stdio.h>
 #include "manager.h"
 

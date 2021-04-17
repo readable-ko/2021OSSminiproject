@@ -1,5 +1,5 @@
 //This is product function code
-//
+// 21700026 ko young kwang
 #include <stdio.h>
 #include <string.h>
 #include "manager.h"
@@ -110,8 +110,7 @@ void searchName(Product *p, int count) {
 	char search[20];
 	int scnt = 0;
 	
-	printf("\n");
-	printf("검색할 상품명을 입력해주세요: ");
+	printf("\n검색할 상품명을 입력해주세요: ");
 	scanf("%s",search);
 
 	printf("  번호  /  상품명  /  중량  /  판매가격  /  별점(갯수)\n");
@@ -133,8 +132,7 @@ void searchPrice(Product *p, int count) {
 	int scnt = 0, key;
 
 	while(1) {
-		printf("\n");
-		printf("검색할 최소 금액을 입력해주세요 : ");
+		printf("\n검색할 최소 금액을 입력해주세요 : ");
 		scanf("%d", &lower_bound);
 	
 		printf("검색할 최대 금액을 입력해주세요 : ");
@@ -165,8 +163,7 @@ void searchRate(Product *p, int count) {
 
 	while(1) {
                 while(1) {
-			printf("\n");
-			printf("검색할 최저 별점을 입력해주세요(1~5점) : ");
+			printf("\n검색할 최저 별점을 입력해주세요(1~5점) : ");
 			scanf("%d", &lower_bound);
                 	if(lower_bound >= 1 && lower_bound <= 5) break;
                 }
@@ -194,6 +191,7 @@ void searchRate(Product *p, int count) {
 	}
 	if(scnt == 0) printf("검색된 데이터가 없습니다.\n\n");
 }
+
 void searchStar(Product *p, int count) {
 	int lower_bound;
 	int upper_bound;

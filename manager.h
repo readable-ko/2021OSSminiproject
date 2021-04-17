@@ -1,3 +1,4 @@
+//This is manager header file
 #ifndef __MANAGER_H__
 #define __MANAGER_H__
 #include "product.h"

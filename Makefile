@@ -1,3 +1,4 @@
+#This is a make file of product
 CC = gcc
 CFLAGS = -W -Wall
 TARGET = product
